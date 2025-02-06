@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import { Todo } from "./models/list.model.js";
+import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -49,7 +50,21 @@ app.get("/tasks", async (req, res) => {
   }
 });
 
-app.delete("/", async (req, res) => {});
+app.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ success: false, message: "Invalid task ID" });
+  }
+
+  try {
+    await Todo.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "Task Deleted" });
+  } catch (error) {
+    console.log("Error in deleting task", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+});
 
 app.listen(5000, () => {
   connectDB();
