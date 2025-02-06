@@ -21,6 +21,7 @@ app.post("/create", async (req, res) => {
         .status(400)
         .json({ success: false, message: "task is required" });
     }
+    //Todo is mongoose model imported from list.models.js representing collections in the database
     const newTodo = new Todo(todo);
 
     await newTodo.save();
@@ -32,6 +33,23 @@ app.post("/create", async (req, res) => {
     res.status(500).json({ message: "Server Error", success: false });
   }
 });
+
+app.get("/tasks", async (req, res) => {
+  try {
+    //task is a variable that stores the result of Todo.find().
+    const tasks = await Todo.find(); //uses Mongoose's find() method to retrieve all from Todo collection
+    res.status(200).json({
+      success: true,
+      message: "Task retrieved successfully",
+      data: tasks,
+    });
+  } catch (error) {
+    console.log("error in fetching tasks", error.message);
+    res.status(500).json({ success: false, message: "server error" });
+  }
+});
+
+app.delete("/", async (req, res) => {});
 
 app.listen(5000, () => {
   connectDB();
