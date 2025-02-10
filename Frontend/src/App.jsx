@@ -1,7 +1,13 @@
-import "./App.css";
+import { Box, Center } from "@chakra-ui/react";
 
 function App() {
-  return;
+  return (
+    <Box minH={"100vh"}>
+      <Box bg={"blue"} justifyContent={"Center"}>
+        Todo List
+      </Box>
+    </Box>
+  );
 }
 
 export default App;
