@@ -1,12 +1,15 @@
-import { Box, Center } from "@chakra-ui/react";
+import "./App.css";
 
 function App() {
   return (
-    <Box minH={"100vh"}>
-      <Box bg={"blue"} justifyContent={"Center"}>
-        Todo List
-      </Box>
-    </Box>
+    <div className="main">
+      <div className="title">
+        <h1>TO-DO BOARD</h1>
+      </div>
+      <div className="input">
+        <input placeholder="   Enter Task Here" />
+      </div>
+    </div>
   );
 }
 

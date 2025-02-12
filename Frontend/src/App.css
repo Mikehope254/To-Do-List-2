@@ -1,0 +1,50 @@
+.main {
+  background-color: #1c2842;
+  width: 800px;
+  height: 400px;
+  border-radius: 19px;
+  margin: auto;
+  margin-top: 100px;
+  border: 2px solid grey;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  margin: auto;
+  font-size: 50px;
+  border-radius: 19px;
+  height: 100px;
+}
+
+.title h1 {
+  margin-left: 27%;
+  color: grey;
+  margin-top: 19px;
+}
+
+.input {
+  border: grey solid;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 30px;
+  width: 500px;
+  height: 50px;
+  color: grey;
+}
+
+.input input {
+  color: white;
+  height: 45px;
+  width: 493px;
+  border-radius: 10px;
+  background: #1c2842;
+  font-size: 20px;
+}
+
+input:focus {
+  outline: white solid 2px;
+  width: 495px;
+  height: 45px;
+  border-radius: 10px;
+}
