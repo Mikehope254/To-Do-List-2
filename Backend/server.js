@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import { Todo } from "./models/list.model.js";
+import { Todo } from "./models/todo.model.js";
 import mongoose from "mongoose";
 
 dotenv.config();
@@ -11,8 +11,12 @@ console.log(process.env.MONGO_URI); //calling .env file
 const app = express();
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Backend is Running");
+});
+
 //route to create a new todo(task)
-app.post("/create", async (req, res) => {
+export const createTask = async (req, res) => {
   //create task
   try {
     const todo = req.body; //user data
@@ -33,9 +37,9 @@ app.post("/create", async (req, res) => {
     console.log("Error in creating product", error.message);
     res.status(500).json({ message: "Server Error", success: false });
   }
-});
+};
 
-app.get("/tasks", async (req, res) => {
+export const getTask = async (req, res) => {
   try {
     //task is a variable that stores the result of Todo.find().
     const tasks = await Todo.find(); //uses Mongoose's find() method to retrieve all from Todo collection
@@ -48,9 +52,9 @@ app.get("/tasks", async (req, res) => {
     console.log("error in fetching tasks", error.message);
     res.status(500).json({ success: false, message: "server error" });
   }
-});
+};
 
-app.delete("/:id", async (req, res) => {
+export const deleteTask = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -64,7 +68,7 @@ app.delete("/:id", async (req, res) => {
     console.log("Error in deleting task", error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
-});
+};
 
 app.listen(5000, () => {
   connectDB();

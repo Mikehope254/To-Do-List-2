@@ -43,7 +43,7 @@
 }
 
 input:focus {
-  outline: white solid 2px;
+  outline: grey solid 1px;
   width: 495px;
   height: 45px;
   border-radius: 10px;
