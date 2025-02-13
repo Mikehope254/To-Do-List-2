@@ -1,8 +1,14 @@
 import express from "express";
-import { createTask, deleteTask, getTask } from "../server";
+import {
+  createTask,
+  deleteTask,
+  getTask,
+} from "../controllers/todo.controller.js";
 
-export const router = express.Router();
+const router = express.Router();
 
-router.get("/tasks", getTask);
-router.post("/create", createTask);
+router.get("/", getTask);
+router.post("/", createTask);
 router.delete("/:id", deleteTask);
+
+export default router;
