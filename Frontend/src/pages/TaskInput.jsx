@@ -13,6 +13,10 @@ export default function TaskInput() {
       <div className="input">
         <input placeholder="   Enter Task Here" />
       </div>
+      <div className="buttons">
+        <button className="viewbutton">View Tasks</button>
+        <button className="enterbutton">Enter Task</button>
+      </div>
     </div>
   );
 }
