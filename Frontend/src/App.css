@@ -63,6 +63,9 @@ button.enterbutton {
   position: relative;
   left: 240px;
 }
+button.enterbutton:hover {
+  background: #151e30;
+}
 
 button.viewbutton {
   background: grey;
@@ -73,4 +76,7 @@ button.viewbutton {
   height: 50px;
   position: relative;
   left: 70px;
+}
+button.viewbutton:hover {
+  background: #151e30;
 }

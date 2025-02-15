@@ -5,15 +5,15 @@ import mongoose from "mongoose";
 export const createTask = async (req, res) => {
   //create task
   try {
-    const todo = req.body; //user data
+    const { task } = req.body; //user data
     //simulating missing task error
-    if (!todo) {
+    if (!task) {
       return res
         .status(400)
         .json({ success: false, message: "task is required" });
     }
     //Todo is mongoose model imported from list.models.js representing collections in the database
-    const newTodo = new Todo(todo);
+    const newTodo = new Todo({ task });
 
     await newTodo.save();
     res
