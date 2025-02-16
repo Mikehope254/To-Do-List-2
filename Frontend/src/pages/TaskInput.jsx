@@ -32,7 +32,7 @@ const TaskInput = () => {
   };
 
   return (
-    <div className="main">
+    <div className="board">
       <div className="title">
         <h1>TO-DO BOARD</h1>
       </div>
@@ -45,9 +45,9 @@ const TaskInput = () => {
         />
       </div>
       <div className="buttons">
-        <button className="viewbutton">
-          <Link to="/tasks">View Tasks</Link>
-        </button>
+        <Link to="/tasks">
+          <button className="viewbutton">View Tasks</button>
+        </Link>
         <button className="enterbutton" onClick={handleAddTask}>
           Enter Task
         </button>

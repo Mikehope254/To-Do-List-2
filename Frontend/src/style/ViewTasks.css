@@ -1,7 +1,6 @@
-div.Viewmain {
-  background-color: #1c2842;
+/* div.Viewmain {
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
   border-radius: 19px;
   border: 2px solid grey;
   margin-left: auto;
@@ -9,13 +8,13 @@ div.Viewmain {
   position: absolute;
 }
 
-div.task {
+div.taskBox {
   background-color: #1c2842;
-  width: 800px;
-  height: 400px;
+  width: 90vw;
+  height: 65vh;
   border-radius: 19px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 40px;
   border: 2px solid grey;
   margin-left: auto;
   margin-right: auto;
@@ -34,3 +33,7 @@ div.Viewtitle {
   color: grey;
   margin-top: 5px;
 }
+
+div.tasks {
+  background: #000;
+} */
