@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import { useTaskStore } from "../store/task";
 import { useToast } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const TaskInput = () => {
   const [newTodo, setNewTodo] = useState({ task: "" });
@@ -44,7 +45,9 @@ const TaskInput = () => {
         />
       </div>
       <div className="buttons">
-        <button className="viewbutton">View Tasks</button>
+        <button className="viewbutton">
+          <Link to="/tasks">View Tasks</Link>
+        </button>
         <button className="enterbutton" onClick={handleAddTask}>
           Enter Task
         </button>
