@@ -117,5 +117,8 @@ div.Viewtitle {
 }
 
 div.tasks {
+  border-radius: 19px;
   background: #000;
+  width: 89.5vw;
+  height: 58.5vh;
 }
