@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", todoRoutes);
+app.use("/api/todo", todoRoutes);
 
 app.listen(5000, () => {
   connectDB();

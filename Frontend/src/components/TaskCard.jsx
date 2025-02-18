@@ -1,17 +1,40 @@
-import { Box, VStack } from "@chakra-ui/react";
-import React from "react";
+import { Box, IconButton, VStack } from "@chakra-ui/react";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
-const TaskCard = () => {
+import React from "react";
+import { useTaskStore } from "../store/task";
+
+const TaskCard = ({ task }) => {
+  const { deleteTask } = useTaskStore();
+
+  const handleDeleteTask = async (tid) => {
+    const { success, message } = await deleteTask(tid);
+  };
   return (
     <VStack spacing="14px">
-      <Box w="full" h="60px" bg="yellow.200">
-        1
-      </Box>
-      <Box w="40px" h="40px" bg="tomato">
-        2
-      </Box>
-      <Box w="40px" h="40px" bg="pink.100">
-        3
+      <Box
+        w="full"
+        h="60px"
+        bg="blue.700"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        p={3}
+      >
+        <span>{task.task}</span>
+        <div>
+          <IconButton
+            icon={<EditIcon />}
+            aria-label="Edit Task"
+            colorScheme="blue"
+          />
+          <IconButton
+            icon={<DeleteIcon />}
+            aria-label="Delete Task"
+            onClick={() => handleDeleteTask(task._id)}
+            colorScheme="red"
+          />
+        </div>
       </Box>
     </VStack>
   );

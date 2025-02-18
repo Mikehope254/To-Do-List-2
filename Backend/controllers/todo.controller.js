@@ -29,10 +29,11 @@ export const getTask = async (req, res) => {
   try {
     //task is a variable that stores the result of Todo.find().
     const tasks = await Todo.find(); //uses Mongoose's find() method to retrieve all from Todo collection
+    console.log("Tasks from DB:", tasks);
     res.status(200).json({
       success: true,
-      message: "Task retrieved successfully",
       data: tasks,
+      message: "Task retrieved successfully",
     });
   } catch (error) {
     console.log("error in fetching tasks", error.message);
