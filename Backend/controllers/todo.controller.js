@@ -29,7 +29,6 @@ export const getTask = async (req, res) => {
   try {
     //task is a variable that stores the result of Todo.find().
     const tasks = await Todo.find(); //uses Mongoose's find() method to retrieve all from Todo collection
-    console.log("Tasks from DB:", tasks);
     res.status(200).json({
       success: true,
       data: tasks,
@@ -53,6 +52,28 @@ export const deleteTask = async (req, res) => {
     res.status(200).json({ success: true, message: "Task Deleted" });
   } catch (error) {
     console.log("Error in deleting task", error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const updateTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { completed } = req.body;
+
+    const updateTask = await Todo.findByIdAndUpdate(
+      id,
+      { completed },
+      { new: true }
+    );
+    if (!updateTask) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Task not found" });
+    }
+
+    res.json({ success: true, data: updateTask });
+  } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
