@@ -21,7 +21,6 @@ export default function ViewTasks() {
           <h1>Incompleted tasks</h1>
         </div>
         <div className="tasks">
-          Tasks
           <div className="taskRows">
             {tasks
               .filter((task) => !task.completed)
@@ -36,7 +35,6 @@ export default function ViewTasks() {
           <h1>Completed tasks</h1>
         </div>
         <div className="tasks">
-          Tasks
           <SimpleGrid rows={{ base: 1, md: 2, lg: 3 }} spacing={5} w={"full"}>
             {tasks
               .filter((task) => task.completed)

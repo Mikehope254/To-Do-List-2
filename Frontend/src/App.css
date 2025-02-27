@@ -120,4 +120,8 @@ div.tasks {
   border-radius: 19px;
   width: 89.5vw;
   height: 56vh;
+  max-height: fit-content;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #151e30;
 }

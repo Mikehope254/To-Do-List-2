@@ -47,4 +47,22 @@ export const useTaskStore = create((set) => ({
     }));
     return { success: true, message: data.message };
   },
+
+  updateTaskCompletion: async (tid, completed) => {
+    const res = await fetch(`http://localhost:5000/api/todo/${tid}`, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ completed }),
+    });
+
+    const data = await res.json();
+    if (!data.success) return { success: false, message: data.message };
+
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task._id === tid ? { ...task, completed } : task
+      ),
+    }));
+    return { succes: true, message: "Task updated successfully" };
+  },
 }));
