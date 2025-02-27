@@ -3,6 +3,7 @@ import {
   createTask,
   deleteTask,
   getTask,
+  updateTask,
 } from "../controllers/todo.controller.js";
 
 const router = express.Router();

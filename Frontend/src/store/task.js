@@ -48,7 +48,7 @@ export const useTaskStore = create((set) => ({
     return { success: true, message: data.message };
   },
 
-  updateTaskCompletion: async (tid, completed) => {
+  updateTask: async (tid, completed) => {
     const res = await fetch(`http://localhost:5000/api/todo/${tid}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
