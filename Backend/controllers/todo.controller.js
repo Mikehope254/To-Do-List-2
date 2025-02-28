@@ -56,7 +56,7 @@ export const deleteTask = async (req, res) => {
   }
 };
 
-export const updateTask = async (req, res) => {
+export const updateTaskCompletion = async (req, res) => {
   try {
     const { id } = req.params;
     const { completed } = req.body;

@@ -1,14 +1,18 @@
-import { Box, IconButton, VStack } from "@chakra-ui/react";
+import { Box, Checkbox, IconButton, VStack } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 import React from "react";
 import { useTaskStore } from "../store/task";
 
 const TaskCard = ({ task }) => {
-  const { deleteTask } = useTaskStore();
+  const { deleteTask, updateTaskCompletion } = useTaskStore();
 
   const handleDeleteTask = async (tid) => {
     const { success, message } = await deleteTask(tid);
+  };
+
+  const handleCheckboxChange = async () => {
+    await updateTaskCompletion(task._id, !task.completed);
   };
   return (
     <VStack spacing="14px">
@@ -21,6 +25,10 @@ const TaskCard = ({ task }) => {
         justifyContent="space-between"
         p={3}
       >
+        <Checkbox
+          isChecked={Boolean(task.completed)}
+          onChange={handleCheckboxChange}
+        ></Checkbox>
         <span>{task.task}</span>
         <div>
           <IconButton
