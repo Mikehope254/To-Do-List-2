@@ -24,6 +24,7 @@ const TaskCard = ({ task }) => {
         alignItems="center"
         justifyContent="space-between"
         p={3}
+        background={task.completed ? "cyan.800" : "blue.700"}
       >
         <Checkbox
           isChecked={Boolean(task.completed)}
@@ -31,11 +32,6 @@ const TaskCard = ({ task }) => {
         ></Checkbox>
         <span>{task.task}</span>
         <div>
-          <IconButton
-            icon={<EditIcon />}
-            aria-label="Edit Task"
-            colorScheme="blue"
-          />
           <IconButton
             icon={<DeleteIcon />}
             aria-label="Delete Task"
