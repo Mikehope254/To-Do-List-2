@@ -1,7 +1,7 @@
 import React from "react";
 // import "../style/ViewTasks.css";
 import "../App.css";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 import TaskCard from "../components/TaskCard.jsx";
 import { useTaskStore } from "../store/task.js";
 import { useEffect } from "react";
