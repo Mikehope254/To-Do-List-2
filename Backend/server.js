@@ -1,12 +1,11 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+dotenv.config();
 import path from "path";
 
 import { connectDB } from "./config/db.js";
 import todoRoutes from "./routes/todo.route.js";
-
-dotenv.config();
 
 console.log(process.env.MONGO_URI); //calling .env file
 
@@ -25,6 +24,9 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
   });
 }
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
 
 app.listen(5000, () => {
   connectDB();
