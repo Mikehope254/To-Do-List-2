@@ -12,9 +12,15 @@ export default defineConfig({
       "@emotion/styled",
       "framer-motion",
     ],
+    esbuildOptions: {
+      loader: {
+        ".js": "jsx",
+      },
+    },
   },
   build: {
     commonjsOptions: {
+      transformMixedEsModules: true,
       include: [/node_modules/],
     },
   },
