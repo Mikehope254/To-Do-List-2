@@ -31,14 +31,14 @@ connectDB(process.env.MONGO_URI);
 //Routes
 app.use("/api/todo", todoRoutes);
 
-// Production configuration
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/Frontend/dist")));
+// // Production configuration
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
+//   });
+// }
 
 // Health check
 app.get("/", (req, res) => {
