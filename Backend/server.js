@@ -5,6 +5,10 @@ import path from "path";
 import { connectDB } from "./config/db.js";
 import todoRoutes from "./routes/todo.route.js";
 
+//Verify Installations
+import cookie from "cookie";
+console.log("Cookie module version:", cookie.version);
+
 // Load environment variables
 dotenv.config();
 
