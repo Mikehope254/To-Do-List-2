@@ -5,10 +5,6 @@ import path from "path";
 import { connectDB } from "./config/db.js";
 import todoRoutes from "./routes/todo.route.js";
 
-//Verify Installations
-import cookie from "cookie";
-console.log("Cookie module version:", cookie.version);
-
 // Load environment variables
 dotenv.config();
 
@@ -17,7 +13,16 @@ const app = express();
 
 //Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://to-do-list-frontend-35wo.onrender.com",
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 
 // Verify environment variables
 if (!process.env.MONGO_URI) {
