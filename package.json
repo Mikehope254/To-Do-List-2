@@ -4,5 +4,8 @@
   "workspaces": [
     "Frontend",
     "Backend"
-  ]
+  ],
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
 }
