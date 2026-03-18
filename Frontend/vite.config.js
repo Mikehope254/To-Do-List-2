@@ -5,6 +5,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/",
   plugins: [react()],
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": "http://localhost:5001", // For local dev
+    },
+  },
   optimizeDeps: {
     include: [
       "@chakra-ui/react",

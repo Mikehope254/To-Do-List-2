@@ -15,13 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://to-do-list-frontend-35wo.onrender.com",
-    ],
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
-  })
+  }),
 );
 
 // Verify environment variables
@@ -57,3 +54,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
 });
+
+export default app;
