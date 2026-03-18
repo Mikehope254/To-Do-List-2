@@ -14,11 +14,19 @@ const app = express();
 //Middleware
 app.use(express.json());
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-    credentials: true,
-  }),
+  // cors({
+  //   origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  //   methods: ["GET", "POST", "PATCH", "DELETE"],
+  //   credentials: true,
+  // }),
+  fetch('https://your-backend.vercel.app/api/test', {
+  method: 'GET',
+  mode: 'cors',
+  credentials: 'include'
+})
+.then(res => res.json())
+.then(data => console.log('Success:', data))
+.catch(err => console.error('Error:', err));
 );
 
 // Verify environment variables

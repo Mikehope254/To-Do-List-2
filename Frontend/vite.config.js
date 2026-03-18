@@ -31,4 +31,5 @@ export default defineConfig({
       include: [/node_modules/],
     },
   },
+  publicDir: 'public'
 });
