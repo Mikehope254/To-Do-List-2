@@ -19,14 +19,14 @@ app.use(
   //   methods: ["GET", "POST", "PATCH", "DELETE"],
   //   credentials: true,
   // }),
-  fetch('https://your-backend.vercel.app/api/test', {
-  method: 'GET',
-  mode: 'cors',
-  credentials: 'include'
-})
-.then(res => res.json())
-.then(data => console.log('Success:', data))
-.catch(err => console.error('Error:', err));
+  fetch("https://your-backend.vercel.app/api/test", {
+    method: "GET",
+    mode: "cors",
+    credentials: "include",
+  })
+    .then((res) => res.json())
+    .then((data) => console.log("Success:", data))
+    .catch((err) => console.error("Error:", err)),
 );
 
 // Verify environment variables
