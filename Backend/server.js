@@ -14,29 +14,38 @@ const app = express();
 //Middleware
 app.use(express.json());
 app.use(
-  // cors({
-  //   origin: process.env.FRONTEND_URL || "http://localhost:5173",
-  //   methods: ["GET", "POST", "PATCH", "DELETE"],
-  //   credentials: true,
-  // }),
-  fetch("https://your-backend.vercel.app/api/test", {
-    method: "GET",
-    mode: "cors",
-    credentials: "include",
-  })
-    .then((res) => res.json())
-    .then((data) => console.log("Success:", data))
-    .catch((err) => console.error("Error:", err)),
+  cors({
+    origin: true, // process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+  }),
 );
 
-// Verify environment variables
-if (!process.env.MONGO_URI) {
-  console.error("MONGO_URI is not defined in environment variables");
-  process.exit(1);
-}
+// Database connection (don't exit on failure in serverless)
+let dbConnected = false;
+const initDB = async () => {
+  if (!process.env.MONGO_URI) {
+    console.error("MONGO_URI is not defined in environment variables");
+    return;
+  }
+  try {
+    await connectDB(process.env.MONGO_URI);
+    dbConnected = true;
+  } catch (err) {
+    console.error("DB connection failed:", err.message);
+  }
+};
 
-// Database connection
-connectDB(process.env.MONGO_URI);
+initDB();
+
+// // Verify environment variables
+// if (!process.env.MONGO_URI) {
+//   console.error("MONGO_URI is not defined in environment variables");
+//   process.exit(1);
+// }
+
+// // Database connection
+// connectDB(process.env.MONGO_URI);
 
 //Routes
 app.use("/api/todo", todoRoutes);
@@ -53,14 +62,22 @@ if (process.env.NODE_ENV === "production") {
 app.get("/", (req, res) => {
   res.json({
     status: "API is running",
-    database: process.env.MONGO_URI ? "Configured" : "Not configured",
+    database: dbConnected ? "Connected" : "Not connected",
   });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
-});
+// Only listen in development (not on Vercel)
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+//   console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+// });
 
 export default app;
